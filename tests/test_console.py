@@ -70,7 +70,7 @@ class TestCreate(unittest.TestCase):
         # delete the database to avoid conflicting
         # names
         from models import storage as f_storage
-        f_storage.empty()
+        #f_Storage.empty()
 
         with patch('sys.stdout', new=StringIO()) as out_put:
             HBNBCommand().onecmd("create Place name=\"California\"")
@@ -95,11 +95,11 @@ class TestCreate(unittest.TestCase):
         # delete the database to avoid conflicting
         # names
         from models import storage as f_storage
-        f_storage.empty()
+        #f_Storage.empty()
 
         with patch('sys.stdout', new=StringIO()) as out_put:
             HBNBCommand().onecmd("create Place name=\"California\
-                    " city_id=\"0001\" user_id=\"0001\"")
+                    \" city_id=\"0001\" user_id=\"0001\"")
 
         clean_output = out_put.getvalue()
         self.assertRegex(clean_output, r"\w{8}-\w{4}-\w{4}-\w{4}-\w{12}\n")
@@ -128,7 +128,7 @@ class TestCreate(unittest.TestCase):
         # delete the database to avoid conflicting
         # names
         from models import storage as f_storage
-        f_storage.empty()
+        #f_Storage.empty()
 
         with patch('sys.stdout', new=StringIO()) as out_put:
             HBNBCommand().onecmd("create Place name=\"Double_quote_Insid\"e\"")
@@ -154,7 +154,7 @@ class TestCreate(unittest.TestCase):
         # delete the database to avoid conflicting
         # names
         from models import storage as f_storage
-        f_storage.empty()
+        #f_Storage.empty()
 
         with patch('sys.stdout', new=StringIO()) as out_put:
             HBNBCommand().onecmd("create Place name=\"my_little_house\"")
@@ -180,7 +180,7 @@ class TestCreate(unittest.TestCase):
         # delete the database to avoid conflicting
         # names
         from models import storage as f_storage
-        f_storage.empty()
+        #f_Storage.empty()
 
         with patch('sys.stdout', new=StringIO()) as out_put:
             HBNBCommand().onecmd("create Place name=15.6")
@@ -204,7 +204,7 @@ class TestCreate(unittest.TestCase):
         # delete the database to avoid conflicting
         # names
         from models import storage as f_storage
-        f_storage.empty()
+        #f_Storage.empty()
 
         with patch('sys.stdout', new=StringIO()) as out_put:
             HBNBCommand().onecmd("create Place name=15")
@@ -228,7 +228,7 @@ class TestCreate(unittest.TestCase):
         # delete the database to avoid conflicting
         # names
         from models import storage as f_storage
-        f_storage.empty()
+        #f_Storage.empty()
 
         with patch('sys.stdout', new=StringIO()) as out_put:
             HBNBCommand().onecmd("create Place name=_15")
