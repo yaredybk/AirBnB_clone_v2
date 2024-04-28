@@ -15,16 +15,16 @@ class BaseModel:
             self.updated_at = datetime.now()
             storage.new(self)
         else:
-            if self.created_at:
+            del kwargs['__class__']
+            self.__dict__.update(kwargs)
+            if 'created_at' in self:
                 self.created_at = datetime.fromisoformat(self.created_at)
             else:
                 self.created_at = datetime.now()
-            if self.updated_at:
+            if 'updated_at' in self:
                 self.updated_at = datetime.fromisoformat(self.updated_at)
             else:
                 self.updated_at = datetime.now()
-            del kwargs['__class__']
-            self.__dict__.update(kwargs)
 
     def __str__(self):
         """Returns a string representation of the instance"""
