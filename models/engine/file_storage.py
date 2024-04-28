@@ -26,16 +26,13 @@ class FileStorage:
 
     def new(self, obj):
         """Adds new object to storage dictionary"""
-        self.all().update({obj.to_dict()['__class__'] + '.' + obj.id: obj})
+        self.__objects[obj.to_dict()['__class__'] + '.' + obj.id] = obj
 
     def save(self):
         """Saves storage dictionary to file"""
-        with open(FileStorage.__file_path, 'w') as f:
-            temp = {}
-            temp.update(FileStorage.__objects)
-            for key, val in temp.items():
-                temp[key] = val.to_dict()
-            json.dump(temp, f)
+        tmp = {o: self.__objects[o].to_dict() for o in self.__objects.keys()}
+        with open(self.__file_path, "w", encoding="utf-8") as f:
+            json.dump(tmp, f)
 
     def reload(self):
         """Loads storage dictionary from file"""
@@ -43,7 +40,6 @@ class FileStorage:
         try:
             with open(FileStorage.__file_path, 'r') as f:
                 temp = json.load(f)
-                print(temp)
                 for o in temp.values():
                     cls_name = o["__class__"]
                     del o["__class__"]
@@ -57,3 +53,6 @@ class FileStorage:
             key = obj.__class__.__name__ + '.' + obj.id
             if key in self.__objects:
                 del self.__objects[key]
+    def close(self):
+        """Call the reload method."""
+        self.reload()
