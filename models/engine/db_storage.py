@@ -14,21 +14,20 @@ from sqlalchemy.orm import relationship
 from sqlalchemy.orm import scoped_session
 from sqlalchemy.orm import sessionmaker
 
+
 class DBStorage:
     """represents a database engine"""
-
-
     __engine = None
     __session = None
 
     def __init__(self):
         """init a new db instance"""
         self.__engine = create_engine("mysql+mysqldb://{}:{}@{}/{}".
-                format(getenv("HBNB_MYSQL_USER"),
-                    getenv("HBNB_MYSQL_PWD"),
-                    getenv("HBNB_MYSQL_HOST"),
-                    getenv("HBNB_MYSQL_DB")),
-                pool_pre_ping=True)
+                                      format(getenv("HBNB_MYSQL_USER"),
+                                             getenv("HBNB_MYSQL_PWD"),
+                                             getenv("HBNB_MYSQL_HOST"),
+                                             getenv("HBNB_MYSQL_DB")),
+                                      pool_pre_ping=True)
         if getenv("HBNB_ENV") == "test":
             Base.metadata.drop_all(self.__engine)
 
@@ -45,7 +44,7 @@ class DBStorage:
             if type(cls) is str:
                 cls = eval(cls)
             objs = self.__session.query(cls)
-        return {"{}.{}".format(type(ob).__name__, ob.id):ob for ob in objs}
+        return {"{}.{}".format(type(ob).__name__, ob.id): ob for ob in objs}
 
     def new(self, obj):
         """Add obj to the current database session."""

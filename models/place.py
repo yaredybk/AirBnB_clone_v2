@@ -15,8 +15,6 @@ from sqlalchemy import Table
 from sqlalchemy.orm import relationship
 
 
-
-
 class Place(BaseModel):
     """ A place to stay """
     __tablename__ = "places"
