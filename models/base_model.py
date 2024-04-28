@@ -64,5 +64,10 @@ class BaseModel:
         dictionary['updated_at'] = self.updated_at.isoformat()
         return dictionary
 
+    def delete(self):
+        """delete the active instance from storage"""
+        models.storage.delete(self)
+
     def __setitem__(self, key, value):
+        """set attr"""
         setattr(self, key, value)

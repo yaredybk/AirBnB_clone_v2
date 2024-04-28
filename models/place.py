@@ -15,6 +15,15 @@ from sqlalchemy import Table
 from sqlalchemy.orm import relationship
 
 
+association_table = Table("place_amenity", Base.metadata,
+                          Column("place_id", String(60),
+                                 ForeignKey("places.id"),
+                                 primary_key=True, nullable=False),
+                          Column("amenity_id", String(60),
+                                 ForeignKey("amenities.id"),
+                                 primary_key=True, nullable=False))i
+
+
 class Place(BaseModel):
     """ A place to stay """
     __tablename__ = "places"
@@ -32,3 +41,17 @@ class Place(BaseModel):
     amenities = relationship("Amenity", secondary="place_amenity",
                              viewonly=False)
     amenity_ids = []
+
+    @property
+    def amenities(self):
+        """get/set amenities"""
+        amenity_list = []
+        for amenity in list(models.storage.all(Amenity).values()):
+            if amenity.id in self.amenity_ids:
+                amenity_list.append(amenity)
+        return amenity_list
+
+    @amenities.setter
+    def amenities(self, value):
+        if typr(value) is Amenity:
+            self.amenity_ids.append(value.id)

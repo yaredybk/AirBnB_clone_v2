@@ -15,3 +15,10 @@ class State(BaseModel):
     __tablename__ = "states"
     name = Column(String(128), nullable=False)
     cities = relationship("City", backref="state", cascade="delete")
+
+    if getenv("HBNB_TYPE_STORAGE") != "db":
+        @property
+        def cities(self):
+            """get a list of related city"""
+            return [c for c in models.storage.all(City).values()
+                    if city.state_id == self.id]
