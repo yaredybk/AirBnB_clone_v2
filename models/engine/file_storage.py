@@ -10,6 +10,8 @@ class FileStorage:
 
     def all(self, cls=None):
         """Returns a dictionary of models currently in storage"""
+        if type(cls) is str:
+            cls = eval(cls)
         if cls is not None:
             return {k: v for k, v in self.__objects.items()
                     if cls.__name__ in k}
@@ -38,17 +40,14 @@ class FileStorage:
         from models.amenity import Amenity
         from models.review import Review
 
-        classes = {
-                    'BaseModel': BaseModel, 'User': User, 'Place': Place,
-                    'State': State, 'City': City, 'Amenity': Amenity,
-                    'Review': Review
-                  }
         try:
-            temp = {}
             with open(FileStorage.__file_path, 'r') as f:
                 temp = json.load(f)
-                for key, val in temp.items():
-                    self.all()[key] = classes[val['__class__']](**val)
+                print(temp)
+                for o in temp.values():
+                    cls_name = o["__class__"]
+                    del o["__class__"]
+                    self.new(eval(cls_name)(**o))
         except FileNotFoundError:
             pass
 
