@@ -23,10 +23,10 @@ def hbnb():
     return (f"C {escape(tmp).replace('_', ' ')}")
 
 
-@app.route("/python/<tmp>", strict_slashes=False)
+@app.route("/number/<int:tmp>", strict_slashes=False)
 def hbnb():
     # hbnb page route
-    return (f"Python {escape(tmp).replace('_', ' ')}")
+    return (f"{tmp} is a number")
 
 
 if __name__ == __main__:
