@@ -1,0 +1,13 @@
+#!/bin/bash
+
+replace_shebang() {
+  local file="$1"
+  sed -i 's/#!usr\/bin\/python3/#!\/usr\/bin\/python3/' "$file"  
+}
+
+# Loop through all Python files
+for file in $(find . -type f -name "*.py"); do
+  replace_shebang "$file"
+done
+
+echo "Successfully replaced shebang lines in Python files."
