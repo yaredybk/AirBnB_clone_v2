@@ -18,16 +18,16 @@ def hbnb():
     return ("HBNB")
 
 
-@app.route("/c/<tmp>", strict_slashes=False)
-def hbnb():
+@app.route("/c/<text>", strict_slashes=False)
+def c():
     """ hbnb page route """
-    return (f"C {escape(tmp).replace('_', ' ')}")
+    return (f"C {escape(text).replace('_', ' ')}")
 
 
-@app.route("/python/<tmp>", strict_slashes=False)
-def hbnb():
+@app.route("/python/<text>", strict_slashes=False)
+def python():
     """ hbnb page route """
-    return (f"Python {escape(tmp).replace('_', ' ')}")
+    return (f"Python {escape(text).replace('_', ' ')}")
 
 
 if __name__ == "__main__":

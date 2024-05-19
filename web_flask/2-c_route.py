@@ -18,10 +18,10 @@ def hbnb():
     return ("HBNB")
 
 
-@app.route('/c/<text>', strict_slashes=False)
-def c_text(text):
-    """ Function called with /c/<text> route """
-    return 'C %s' % text.replace('_', ' ')
+@app.route("/c/<tmp>", strict_slashes=False)
+def c():
+    """ hbnb page route """
+    return (f"C {escape(tmp).replace('_', ' ')}")
 
 
 if __name__ == "__main__":
