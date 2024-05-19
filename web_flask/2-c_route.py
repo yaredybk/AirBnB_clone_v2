@@ -21,7 +21,7 @@ def hbnb():
 @app.route("/c/<string:tmp>", strict_slashes=False)
 def c():
     """ hbnb page route """
-    return (f"C {escape(tmp).replace('_', ' ')}")
+    return ("C ".format({escape(tmp).replace('_', ' ')}))
 
 
 if __name__ == "__main__":
