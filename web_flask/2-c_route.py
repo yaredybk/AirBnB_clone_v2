@@ -1,6 +1,6 @@
 #!/usr/bin/python3
 """ Script that runs an app with Flask framework """
-from flask import Flask
+from flask import Flask, render_template
 from markupsafe import escape
 
 app = Flask(__name__)
@@ -18,10 +18,10 @@ def hbnb():
     return ("HBNB")
 
 
-@app.route("/c/<string:tmp>", strict_slashes=False)
-def c():
+@app.route("/c/<text>", strict_slashes=False)
+def c_is(text):
     """ hbnb page route """
-    return ("C ".format({escape(tmp).replace('_', ' ')}))
+    return ("C %s" % escape(text).replace('_', ' '))
 
 
 if __name__ == "__main__":
