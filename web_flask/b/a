@@ -5,7 +5,8 @@ replace_shebang() {
 #  sed -i 's/#!usr\/bin\/python3/#!\/usr\/bin\/python3/' "$file" 
 # sed -i 's/# \(.*\)/""" \1 """/g' "$file" 
 # sed -i 's/'/"/g' "$file"
- sed -i 's/'\'__main__\''/"__main__"/g' "$file"
+# sed -i 's/'\'__main__\''/"__main__"/g' "$file"
+  sed -i 's/'return (f"C {escape(text).replace(\'_\', \' \')}")'/'return ("C ".format({escape(tmp).replace(\'_\', \' \')}))'/
 }
 
 # Loop through all Python files
