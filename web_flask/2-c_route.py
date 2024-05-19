@@ -1,4 +1,5 @@
 #!usr/bin/python3
+""" Script that runs an app with Flask framework """
 from flask import Flask
 from markupsafe import escape
 
@@ -23,6 +24,6 @@ def hbnb():
     return (f"C {escape(tmp).replace('_', ' ')}")
 
 
-if __name__ == __main__:
+if __name__ == '__main__':
     # start server
     app.run(host='0.0.0.0', port=5000)
