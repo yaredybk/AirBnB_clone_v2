@@ -19,27 +19,34 @@ def hbnb():
 
 
 @app.route("/c/<text>", strict_slashes=False)
-def c():
+def c_is(text):
     """ hbnb page route """
     return ("C %s" % escape(text).replace('_', ' '))
 
 
+@app.route("/python/<text>", strict_slashes=False)
+@app.route("/python", strict_slashes=False)
+def python(text="is cool"):
+    """ hbnb page route """
+    return (f"Python {escape(text).replace('_', ' ')}")
+
+
 @app.route("/number/<int:n>", strict_slashes=False)
-def n():
+def is_num(n):
     """ hbnb page route """
     return ("%d is a number" % n)
 
 
 @app.route("/number_template/<int:n>", strict_slashes=False)
-def n_t():
+def num_temp(n):
     """ hbnb page route """
-    return render_template('5-number.html', number=n)
+    return render_template('5-number.html', n=n)
 
 
 @app.route("/number_odd_or_even/<int:n>", strict_slashes=False)
-def n_o_e():
+def num_odd_even(n):
     """ hbnb page route """
-    return render_template('6-number_odd_or_even.html', number=n)
+    return render_template('6-number_odd_or_even.html', n=n)
 
 
 if __name__ == "__main__":
