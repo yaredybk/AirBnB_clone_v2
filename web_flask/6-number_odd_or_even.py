@@ -28,7 +28,7 @@ def c_is(text):
 @app.route("/python", strict_slashes=False)
 def python(text="is cool"):
     """ hbnb page route """
-    return (f"Python {escape(text).replace('_', ' ')}")
+    return ("Python %s" % escape(text).replace('_', ' '))
 
 
 @app.route("/number/<int:n>", strict_slashes=False)
