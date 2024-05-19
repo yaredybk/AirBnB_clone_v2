@@ -2,8 +2,10 @@
 
 replace_shebang() {
   local file="$1"
-  sed -i 's/#!usr\/bin\/python3/#!\/usr\/bin\/python3/' "$file" 
- sed -i 's/# \(.*\)/""" \1 """/g' "$file" 
+#  sed -i 's/#!usr\/bin\/python3/#!\/usr\/bin\/python3/' "$file" 
+# sed -i 's/# \(.*\)/""" \1 """/g' "$file" 
+# sed -i 's/'/"/g' "$file"
+ sed -i 's/'\'__main__\''/"__main__"/g' "$file"
 }
 
 # Loop through all Python files

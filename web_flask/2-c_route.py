@@ -24,6 +24,6 @@ def hbnb():
     return f"C {escape(text).replace('_', ' ')}"
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     """ start server """
     app.run(host='0.0.0.0', port=5000)
