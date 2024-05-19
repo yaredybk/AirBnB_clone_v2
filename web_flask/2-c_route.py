@@ -18,7 +18,7 @@ def hbnb():
     return ("HBNB")
 
 
-@app.route("/c/<tmp>", strict_slashes=False)
+@app.route("/c/<string:tmp>", strict_slashes=False)
 def c():
     """ hbnb page route """
     return (f"C {escape(tmp).replace('_', ' ')}")
